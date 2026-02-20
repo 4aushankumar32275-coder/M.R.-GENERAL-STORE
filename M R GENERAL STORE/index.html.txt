@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>M.R. GENERAL STORE</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        h1 { text-align: center; }
+        .product { border: 1px solid #ccc; padding: 10px; margin: 10px; }
+        button { padding: 5px 10px; }
+        #cart { margin-top: 20px; border-top: 2px solid black; padding-top: 10px; }
+        input { margin: 5px 0; padding: 5px; }
+    </style>
+</head>
+<body>
+
+<h1>🏪 M.R. GENERAL STORE</h1>
+<p><b>Location:</b> Adharpur urf Chak Nizamat</p>
+<p>🚚 Free Delivery above ₹500 | Pickup below ₹500</p>
+
+<h2>Products</h2>
+
+<div class="product">
+    <h3>Rice 1kg</h3>
+    <p>₹60</p>
+    Quantity: <input type="number" id="riceQty" value="1" min="1">
+    <button onclick="addToCart('Rice 1kg', 60, 'riceQty')">Add to Cart</button>
+</div>
+
+<div class="product">
+    <h3>Oil 1L</h3>
+    <p>₹150</p>
+    Quantity: <input type="number" id="oilQty" value="1" min="1">
+    <button onclick="addToCart('Oil 1L', 150, 'oilQty')">Add to Cart</button>
+</div>
+
+<div id="cart">
+    <h2>🛒 Cart</h2>
+    <p>Total Amount: ₹<span id="total">0</span></p>
+    <p id="delivery"></p>
+
+    <h3>Customer Details</h3>
+    <input type="text" id="name" placeholder="Enter Name"><br>
+    <input type="text" id="phone" placeholder="Enter Phone"><br>
+    <input type="text" id="address" placeholder="Enter Address"><br>
+
+    <button onclick="placeOrder()">Place Order</button>
+</div>
+
+<script>
+
+let total = 0;
+let orderDetails = "";
+
+function addToCart(productName, price, qtyId) {
+    let quantity = document.getElementById(qtyId).value;
+    let itemTotal = price * quantity;
+
+    total += itemTotal;
+    orderDetails += productName + " x " + quantity + " = ₹" + itemTotal + "%0A";
+
+    document.getElementById("total").innerText = total;
+    checkDelivery();
+}
+
+function checkDelivery() {
+    if(total >= 500) {
+        document.getElementById("delivery").innerText = "✅ Free Home Delivery Available";
+    } else {
+        document.getElementById("delivery").innerText = "❌ Only Pickup Available (Order below ₹500)";
+    }
+}
+
+function placeOrder() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
+
+    if(name === "" || phone === "" || address === "") {
+        alert("Please fill all details");
+        return;
+    }
+
+    let deliveryType = total >= 500 ? "Free Home Delivery" : "Pickup Only";
+
+    let message = "New Order - M.R. GENERAL STORE%0A%0A" +
+                  "Customer Name: " + name + "%0A" +
+                  "Phone: " + phone + "%0A" +
+                  "Address: " + address + "%0A%0A" +
+                  "Order Details:%0A" + orderDetails + "%0A" +
+                  "Total Amount: ₹" + total + "%0A" +
+                  "Delivery: " + deliveryType;
+
+    let whatsappNumber = "919876543210"; // PUT YOUR NUMBER HERE
+
+    let url = "https://wa.me/" + whatsappNumber + "?text=" + message;
+
+    window.open(url, "_blank");
+}
+
+</script>
+
+</body>
+</html>

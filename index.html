@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>M.R. GENERAL STORE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f2f2f2;
+}
+
+header {
+    background: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.container {
+    padding: 15px;
+}
+
+input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.product {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.price {
+    color: green;
+    font-weight: bold;
+}
+
+.cart {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+h3 {
+    color: #2e7d32;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🏪 M.R. GENERAL STORE<br>
+Adharpur urf Chak Nizamat
+<br>
+<button onclick="toggleLanguage()" style="margin-top:10px; background:white; color:#2e7d32; width:auto; padding:5px 10px;">
+🌍 English / हिंदी
+</button>
+</header>
+
+<div class="container">
+
+<input type="text" id="search" placeholder="Search product..." onkeyup="searchProduct()">
+<div style="margin-bottom:15px;">
+
+<button onclick="filterCategory('all')">All</button>
+<button onclick="filterCategory('atta')">Atta & Rice</button>
+<button onclick="filterCategory('oil')">Oil</button>
+<button onclick="filterCategory('soap')">Soap & Detergent</button>
+<button onclick="filterCategory('drink')">Cold Drinks</button>
+<button onclick="filterCategory('biscuit')">Biscuits</button>
+
+</div>
+
+<h2 id="productsTitle">Products</h2>
+
+<!-- PRODUCTS START -->
+
+<div class="product atta Rice">
+    <h3 style="margin-top:20px;">🥖 Atta & Rice</h3>
+<h3>Rice 1kg</h3>
+<div class="price">₹40</div>
+Quantity:<input type="number" id="rice" value="1" min="1">
+<button onclick="addToCart('Rice 1kg',40,'rice')">Add to Cart</button>
+</div>
+
+<div class="product atta Rice">
+<h3>Basmati Rice 1kg</h3>
+<div class="price">₹70</div>
+Quantity:<input type="number" id="basmati" value="1" min="1">
+<button onclick="addToCart('Basmati Rice',70,'basmati')">Add to Cart</button>
+</div>
+
+<div class="product atta">
+<h3>Aata 1kg</h3>
+<div class="price">₹40</div>
+Quantity:<input type="number" id="aata" value="1" min="1">
+<button onclick="addToCart('Aata 1kg',40,'aata')">Add to Cart</button>
+</div>
+
+<div class="product atta">
+<h3>Aata 5kg</h3>
+<div class="price">₹210</div>
+Quantity:<input type="number" id="aata5" value="1" min="1">
+<button onclick="addToCart('Aata 5kg',210,'aata5')">Add to Cart</button>
+</div>
+
+<div class="product">
+<h3>Salt 1kg</h3>
+<div class="price">₹30</div>
+Quantity:<input type="number" id="salt" value="1" min="1">
+<button onclick="addToCart('Salt',30,'salt')">Add to Cart</button>
+</div>
+
+<div class="product">
+<h3>Loose Sugar</h3>
+<div class="price">₹46</div>
+Quantity:<input type="number" id="sugar" value="1" min="1">
+<button onclick="addToCart('Loose Sugar',46,'sugar')">Add to Cart</button>
+</div>
+
+<div class="product oil">
+    <h3 style="margin-top:20px;">🛢 Oil</h3>
+<h3>Fortune Oil 1L</h3>
+<div class="price">₹170</div>
+Quantity:<input type="number" id="fortune" value="1" min="1">
+<button onclick="addToCart('Fortune Oil',170,'fortune')">Add to Cart</button>
+</div>
+
+<div class="product detergent">
+    <h3 style="margin-top:20px;">🧼 Soap & Detergent</h3>
+<h3>Wheel 1kg</h3>
+<div class="price">₹70</div>
+Quantity:<input type="number" id="wheel" value="1" min="1">
+<button onclick="addToCart('Wheel 1kg',70,'wheel')">Add to Cart</button>
+</div>
+
+<div class="product detergent">
+<h3>Surf Excel 500gm</h3>
+<div class="price">₹70</div>
+Quantity:<input type="number" id="surf" value="1" min="1">
+<button onclick="addToCart('Surf Excel 500gm',70,'surf')">Add to Cart</button>
+</div>
+
+<div class="product">
+<h3>Maggi</h3>
+<div class="price">₹15</div>
+Quantity:<input type="number" id="maggi" value="1" min="1">
+<button onclick="addToCart('Maggi',15,'maggi')">Add to Cart</button>
+</div>
+
+<div class="product cold drink">
+    <h3 style="margin-top:20px;">🥤 Cold Drinks</h3>
+<h3>Sprite</h3>
+<div class="price">₹40</div>
+Quantity:<input type="number" id="sprite" value="1" min="1">
+<button onclick="addToCart('Sprite',40,'sprite')">Add to Cart</button>
+</div>
+
+<div class="product">
+<h3>Coca Cola</h3>
+<div class="price">₹40</div>
+Quantity:<input type="number" id="coke" value="1" min="1">
+<button onclick="addToCart('Coca Cola',40,'coke')">Add to Cart</button>
+</div>
+
+<!-- PRODUCTS END -->
+
+<div class="cart">
+<h2 id="cartTitle">Cart</h2>
+<p>Total: ₹<span id="total">0</span></p>
+<p>Items in Cart: <span id="itemCount">0</span></p>
+<p id="delivery"></p>
+
+<h3 id="customerTitle">Customer Details</h3>
+<input type="text" id="name" placeholder="Enter Name">
+<input type="text" id="phone" placeholder="Enter Phone">
+<input type="text" id="address" placeholder="Enter Address">
+
+<button onclick="placeOrder()">Place Order on WhatsApp</button>
+</div>
+
+</div>
+
+<script>
+
+let itemCount = 0;
+let total = 0;
+let orderDetails = "";
+
+function addToCart(productName, price, qtyId) {
+   let quantity = parseInt(document.getElementById(qtyId).value);
+let itemTotal = price * quantity;
+
+itemCount += quantity;
+document.getElementById("itemCount").innerText = itemCount;
+    total += itemTotal;
+
+    orderDetails += productName + " x " + quantity + " = ₹" + itemTotal + "%0A";
+
+    document.getElementById("total").innerText = total;
+    checkDelivery();
+}
+
+function checkDelivery() {
+    if(total >= 500) {
+        document.getElementById("delivery").innerText = "✅ Free Home Delivery Available";
+    } else {
+        document.getElementById("delivery").innerText = "❌ Only Pickup Available (Below ₹500)";
+    }
+}
+
+function searchProduct() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let products = document.getElementsByClassName("product");
+
+    for (let i = 0; i < products.length; i++) {
+        let productName = products[i].innerText.toLowerCase();
+        products[i].style.display = productName.includes(input) ? "block" : "none";
+    }
+}
+
+function placeOrder() {
+
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
+
+    if(name=="" || phone=="" || address==""){
+        alert("Please fill all details");
+        return;
+    }
+
+    let deliveryType = total >= 500 ? "Free Home Delivery" : "Pickup Only";
+
+    let message = "New Order - M.R. GENERAL STORE%0A%0A"
+    + "Name: " + name + "%0A"
+    + "Phone: " + phone + "%0A"
+    + "Address: " + address + "%0A%0A"
+    + "Order:%0A" + orderDetails + "%0A"
+    + "Total: ₹" + total + "%0A"
+    + "Delivery: " + deliveryType;
+
+    let whatsappNumber = "919798740836";
+
+    window.open("https://wa.me/" + whatsappNumber + "?text=" + message);
+}
+let currentLanguage = "english";
+
+function toggleLanguage() {
+
+    if(currentLanguage === "english") {
+
+        document.getElementById("productsTitle").innerText = "उत्पाद";
+        document.getElementById("cartTitle").innerText = "कार्ट";
+        document.getElementById("customerTitle").innerText = "ग्राहक विवरण";
+
+        document.getElementById("search").placeholder = "उत्पाद खोजें...";
+
+        currentLanguage = "hindi";
+
+    } else {
+
+        document.getElementById("productsTitle").innerText = "Products";
+        document.getElementById("cartTitle").innerText = "Cart";
+        document.getElementById("customerTitle").innerText = "Customer Details";
+
+        document.getElementById("search").placeholder = "Search product...";
+
+        currentLanguage = "english";
+    }
+}
+function filterCategory(category) {
+
+    let products = document.getElementsByClassName("product");
+
+    for (let i = 0; i < products.length; i++) {
+
+        if (category === "all") {
+            products[i].style.display = "block";
+        }
+        else if (products[i].classList.contains(category)) {
+            products[i].style.display = "block";
+        }
+        else {
+            products[i].style.display = "none";
+        }
+
+    }
+}
+</script>
+
+</body>
+
+</html>
